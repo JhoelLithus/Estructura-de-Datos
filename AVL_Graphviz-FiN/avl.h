@@ -42,18 +42,17 @@ class avl
         bool find(K _key,Node<K,D> **&tmp);
         bool insert(Node<K,D>** n,K key);
         bool insert(K key);
-        void remove(Node<K,D>** n,K key);
-        bool remove(K key);
         Node<K,D>* Min(Node<K,D> **n);
         int altura(Node<K,D> * n);
         int altura();
         int max(int a,int b);
         void rotar(Node<K,D>** n, bool side);
         bool balance(Node<K,D> **n,bool child);
-        bool Delete(Node<K,D> **n, K k);
-        
+        //bool Delete(Node<K,D> **n, K k);
         void printArbol(int num);
     	void printArbol(ofstream & os, Node<K,D> *n);
+    	bool remove(K key);
+        bool remove(Node<K,D> **n, K pkey);
         
 };
 #include "avl.inl"

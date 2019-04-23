@@ -26,11 +26,11 @@ bool avl<K,D>::find(K key)
     Node<K,D> **aux;
     if(find(key,aux)==true)
 	{
-        cout<<"elemento "<<key<<" fue encontrado"<<endl;
+        //cout<<"elemento "<<key<<" fue encontrado"<<endl;
     }
 	else
 	{
-        cout<<key<<" El elemento no ha podido ser encontrado";
+        //cout<<key<<" El elemento no ha podido ser encontrado";
     }
 }
 
@@ -89,7 +89,16 @@ bool  avl<K,D>::balance(Node<K,D> **n,bool child)
     return true;
 }
 
-
+template<class K,class D>
+void avl<K,D>::destructor(Node<K,D> *n)
+{
+    if(n)
+    {
+    destructor(n->p_children[0]);
+    destructor(n->p_children[1]);
+        delete(n);
+    }   
+}
 
 template<class K,class D>
 void avl<K,D>::rotar(Node<K,D>** n, bool side)
@@ -145,53 +154,6 @@ Node<K,D>* avl<K,D>::Min(Node<K,D> **n)
         return Min(&(*n)->p_children[0]);
 }
 
-template<class K,class D>
-bool avl<K,D>::remove(K key)
-{
-    return Delete(&root, key);
-}
-
-template<class K,class D>
-bool avl<K,D>::Delete(Node<K,D> **n, K k)
-{
-    Node<K,D>* temp;
-    if (*n == NULL)
-        return false;
-    if((*n)->key == k)
-	{
-        if((*n)->p_children[0] && (*n)->p_children[1])
-        {  
-            temp =Min(&(*n)->p_children[1]);
-            (*n)->key = temp->key;
-            Delete(&(*n)->p_children[1],(*n)->key);
-            
-        }
-		else
-		{
-            temp = *n;
-            if((*n)->p_children[0] == NULL)
-                *n = (*n)->p_children[1];
-            else if((*n)->p_children[1]== NULL)
-                *n = (*n)->p_children[0];
-            delete temp;
-        }
-        if(*n==NULL)
-            return false;
-    }
-    bool child = (*n)->key < k; 
-    if(Delete(&(*n)->p_children[child],k))
-        return balance(n,child);
-}
-template<class K,class D>
-void avl<K,D>::destructor(Node<K,D> *n)
-{
-    if(n)
-    {
-    destructor(n->p_children[0]);
-    destructor(n->p_children[1]);
-        delete(n);
-    }   
-}
 
 template <class K, class D>
 void avl<K,D>::printArbol(int num)
@@ -238,3 +200,46 @@ void avl<K,D>::printArbol(ofstream & os, Node<K,D> *n)
     }
 }
 
+template<class K,class D>
+bool avl<K,D>::remove(K key)
+{
+    return remove(&root,key);
+}
+
+
+
+template<class K,class D>
+bool avl<K,D>::remove(Node<K,D> **n, K pkey)
+{
+    Node<K,D>* temp;
+    if (*n == NULL){ 
+        return false;
+    }
+    if((*n)->key == pkey)
+	{
+        if((*n)->p_children[0] && (*n)->p_children[1])
+        {
+            temp =Min(&(*n)->p_children[1]);
+            (*n)->key = temp->key;
+            remove(&(*n)->p_children[1],(*n)->key);
+        }
+		else
+		{
+            temp = *n;
+            if((*n)->p_children[0] == NULL){
+                *n = (*n)->p_children[1];
+            }
+            else if((*n)->p_children[1]== NULL){
+                *n = (*n)->p_children[0];
+            }
+            delete temp;
+        }
+        if(*n==NULL)
+            return false;
+    }
+    bool child = (*n)->key < pkey; 
+    if(remove(&(*n)->p_children[child],pkey)){
+        return balance(n,child);
+
+    }
+}
