@@ -78,9 +78,22 @@ class sparse_matrix
 	{
 		if (this->p_head[2] != NULL)
 		{
-			//delete this->p_head[2];
-			delete this->p_head[0];
-			delete this->p_head[1];
+		
+			if(p_head[0])
+			{
+				for(int i=0;i<n_rows;i++)
+				{
+					for(int j=0; j<n_cols;j++)
+					{
+					delete[]p_head[i];
+					delete[]p_head[j];
+					}
+				}
+			}
+			else
+			{
+			
+			}
 		}
 		
 	}
