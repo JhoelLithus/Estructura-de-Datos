@@ -78,10 +78,11 @@ class sparse_matrix
 	{
 		if (this->p_head[2] != NULL)
 		{
-			delete this->p_head[2];
+			//delete this->p_head[2];
 			delete this->p_head[n_cols];
+			delete this->p_head[n_rows];
 		}
-		delete this->p_head[n_rows];
+		
 	}
 		
 		
