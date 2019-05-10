@@ -31,10 +31,12 @@ template <class K, class D>
 bool redblack<K,D>::find(K _key)
 {
     Node<K,D> * temp = root;
-    if(!temp) return false;
+    if(!temp)
+		return false;
     while(temp)
 	{
-        if(temp->key == _key) return true;
+        if(temp->key == _key)
+			return true;
         temp = temp->p_children[temp->key < _key];
     }
     return false;
@@ -46,8 +48,9 @@ bool redblack<K,D>::find(const K & _key, Node<K,D> *temp)
     temp = root;
     while(temp)
     {
-        if( (temp)->key == _key ) return true;
-        temp = temp->p_children[ (temp)->key < _key ];
+        if( (temp)->key == _key )
+			return true;
+        temp = temp->p_children[ (temp)->key < _key];
     }
     return false;
 }
@@ -129,7 +132,8 @@ bool redblack<K,D>::Red(Node<K, D> * n)
 }
 
 template <class K, class D>
-bool redblack<K,D>::Black(Node<K, D> * n){
+bool redblack<K,D>::Black(Node<K, D> * n)
+{
 	
     if(!n)
 		return true;
@@ -139,7 +143,7 @@ bool redblack<K,D>::Black(Node<K, D> * n){
 		return false;
 }
 
-//Turn side
+//Turn side _> Voltear de lado
 template <class K, class D>
 void redblack<K,D>::turn_side( Node<K,D> ** n, bool side)
 {
@@ -153,13 +157,15 @@ void redblack<K,D>::turn_side( Node<K,D> ** n, bool side)
 //Revove
 
 template<class K,class D>
-bool redblack<K,D>::remove(const K & key,const D & data){
+bool redblack<K,D>::remove(const K & key,const D & data)
+{
     remove(key, data, &root, NULL);
     return true;
 }
 
 template<class K, class D>
-Node<K,D> * redblack<K,D>::remove(const K & key,const D & data, Node<K,D> ** n, Node<K,D> ** p){
+Node<K,D> * redblack<K,D>::remove(const K & key,const D & data, Node<K,D> ** n, Node<K,D> ** p)
+{
     Node<K,D> *tmp;
     if(!(*n))
         return NULL;
@@ -228,6 +234,7 @@ Node<K,D> * redblack<K,D>::remove(const K & key,const D & data, Node<K,D> ** n, 
     return (*n); 
 }
 
+//Operator () para el insert
 template <class K, class D>
 D & redblack<K,D>::operator()(const K & _key)
 {
@@ -248,25 +255,14 @@ template<class K,class D>
 Node<K,D>* redblack<K,D>::min(Node<K,D> **n)
 {
     if (!(*n))
-    {
         return NULL;
-    }
-    else{
-        if(!((*n)->p_children[0])){
+    else
+	{
+        if(!((*n)->p_children[0]))
             return (*n);
-        }
-        else{
+        else
             return min(&((*n)->p_children[0]));
-        }
     }
-}
-
-//Draw
-template <class K, class D>
-void redblack<K,D>::draw()
-{
-    ofstream newFile;
-    draw(root,newFile);
 }
 
 //Print Color

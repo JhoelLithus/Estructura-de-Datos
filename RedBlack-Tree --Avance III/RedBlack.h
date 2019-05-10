@@ -45,8 +45,8 @@ class redblack
 		
         bool insert(const K & _key, const D & _data);
     	Node<K,D> * insert(const K & _key, const D & _data, Node<K,D> ** n,  Node<K,D> ** p);  	
+
 	// Balancear
-	
 	void turn_side( Node<K,D> ** n, bool side);
 	// Remove
 		
@@ -61,11 +61,7 @@ class redblack
     D & operator()(const K & _key);
     
     Node<K,D> * min(Node<K,D> **n);
-    
-    //Draw
-    void draw();
-    bool draw(Node<K,D> *n, ofstream & os);
-    
+        
     //Print Arbol
     void print_arbol(ofstream & os,Node<K,D> *n);
     void print_arbol(int num);
