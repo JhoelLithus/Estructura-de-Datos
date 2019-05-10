@@ -8,8 +8,8 @@ Node<K,D>::Node(const K & k,const D & d):key(k),data(d)
 template<class K,class D>
 Node<K,D>::~Node()
 {
-	delete(p_children[0]);
-	delete(p_children[1]);
+	//delete(p_children[0]);
+	//delete(p_children[1]);
 	//color = NULL;
 }
 
@@ -56,7 +56,6 @@ bool redblack<K,D>::find(const K & _key, Node<K,D> *temp)
 }
 
 //insert
-
 template <class K, class D>
 bool redblack<K,D>::insert(const K & _key, const D & _data)
 {
@@ -119,7 +118,7 @@ Node<K,D> * redblack<K,D>::insert(const K & _key, const D & _data, Node<K,D> ** 
     return (*n );
 	
 }
-
+// Is Red the node?
 template <class K, class D>
 bool redblack<K,D>::Red(Node<K, D> * n)
 {
@@ -131,6 +130,7 @@ bool redblack<K,D>::Red(Node<K, D> * n)
 		return false;
 }
 
+// Is Black the node?
 template <class K, class D>
 bool redblack<K,D>::Black(Node<K, D> * n)
 {
@@ -143,7 +143,7 @@ bool redblack<K,D>::Black(Node<K, D> * n)
 		return false;
 }
 
-//Turn side _> Voltear de lado
+//Turn side -> Voltear de lado
 template <class K, class D>
 void redblack<K,D>::turn_side( Node<K,D> ** n, bool side)
 {
@@ -155,7 +155,6 @@ void redblack<K,D>::turn_side( Node<K,D> ** n, bool side)
 
 
 //Revove
-
 template<class K,class D>
 bool redblack<K,D>::remove(const K & key,const D & data)
 {
@@ -275,7 +274,8 @@ void redblack<K,D>::print_color(ofstream & os,Node<K,D> *ptr)
   	{
 		os<< ptr->key << "[style=filled, fillcolor=black, fontcolor=white]"<< endl;
   	}
-  	else os<< ptr->key << "[style=filled, fillcolor=red]"<< endl;
+  	else
+		os<< ptr->key << "[style=filled, fillcolor=red]"<< endl;
   	print_color(os,ptr->p_children[0]);
   	print_color(os,ptr->p_children[1]);
 }
@@ -315,7 +315,7 @@ void redblack<K,D>::print_arbol(ofstream & os,Node<K,D> *n)
             os<<" -- ";
             os<<n->p_children[0]->key<<endl;
             print_arbol(os,n->p_children[0]);
-        }
+	    }
         if(n->p_children[1]!=NULL)
 		{
             os<<n->key;

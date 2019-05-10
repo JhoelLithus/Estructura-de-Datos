@@ -48,16 +48,16 @@ class redblack
 
 	// Balancear
 	void turn_side( Node<K,D> ** n, bool side);
+	
 	// Remove
-		
     bool remove(const K & key,const D & data);
     Node<K,D> * remove(const K & key,const D & data, Node<K,D> ** n, Node<K,D> ** p);    
-	//Color
 	
+	//Color
 	bool Red(Node<K, D> * n);
     bool Black(Node<K, D> * n);
     
-    //Sobrecarga de operadores []
+    //Sobrecarga de operadores ()
     D & operator()(const K & _key);
     
     Node<K,D> * min(Node<K,D> **n);
@@ -69,6 +69,7 @@ class redblack
     //Print Color
     void print_color(ofstream & es,Node<K,D> *n);
     
+	//Destructor
     void Destructor(Node<K,D> *n);
     
 };
