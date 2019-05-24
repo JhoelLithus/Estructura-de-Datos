@@ -3,14 +3,14 @@ int main()
 {
 	bh<int> b;
 	
-	b.insert(5);
-	b.insert(15);
-	b.insert(25);
+	b.insert(8);
+	b.insert(16);
+	b.insert(32);
 	
 	b.getMin();
 	
-	b.insert(35);
-	b.insert(45);
+	b.insert(64);
+	b.insert(128);
 
 	b.print();
 	

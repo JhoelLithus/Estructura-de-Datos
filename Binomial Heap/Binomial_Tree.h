@@ -33,14 +33,6 @@ public:
 			os<<"p"<<this<<" -> p"<<p<<endl;
 		}
 	}
-  void print1()
-  {
-		cout<<"p"<<dato<<endl;
-		for(bt<T>*p:children)
-		{
-			p->print1();
-		}
-  }
 	friend class bh<T>;
 };
 template<class T,size_t tam>
@@ -88,21 +80,20 @@ public:
     bool c=1;
     for(int i=0;i<tam;i++)
 	{
-      if(trees[i]){
-      	if(c){
-      		t=trees[i];
-      	}
+    	if(trees[i])
+	  	{
+      		if(c)
+      			t=trees[i];
       	
         if (trees[i]->dato<t->dato)
-        {
         	t=trees[i];
-        }
-      c=0;
-	  }
+      	c=0;
+	  	}
 	}
     
     return t;
   } 
+  //remove
   void remove()
   {  
     bt<T>* heap,lo,temp,it; 
@@ -119,8 +110,9 @@ public:
     }
     delete temp;
   }
-	
-	void print(){
+	//print
+	void print()
+	{
 		ofstream os("binh.dot");
 		os<<"digraph bh{ "<<endl;
 		for(int i=0; i<sizeof(trees); i++)
@@ -131,7 +123,7 @@ public:
 		os.close();
 	}
 	
-	
+	//printArbol
 	void printArbol(int num)
 	{
 	    string num_arch = to_string(num);
