@@ -82,7 +82,7 @@ int main()
 		
 		memset(mst,0,sizeof(mst));
 		
-		
+		/*
 		uf.unionfind(n);
 		c = 0;
 		
@@ -108,8 +108,6 @@ int main()
 		}
 		
 		printf("%d\n", mincost);
-		
+		*/
 	}
-	
-	
 }
